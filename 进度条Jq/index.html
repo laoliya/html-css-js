@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="skills">
+        <div class="skill">
+            <div class="skill-name">html</div>
+            <div class="skill-bar">
+                <div class="skill-per"per="1">
+                </div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">css</div>
+            <div class="skill-bar">
+                <div class="skill-per"per="1">
+                </div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">javaScript</div>
+            <div class="skill-bar">
+                <div class="skill-per"per="1">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        $('.skill-per').each(function(){
+            var $this = $(this);
+            var per = $this.attr('per');
+            $this.css("width",per+'%');
+            $({animatedValue: 0}).animate({animatedValue : per},{duration:100, 
+                step:function(){
+                    $this.attr('per' , Math.floor(this.animatedValue) + "%")
+                },
+                complete:function(){
+                    $this.attr('per' , Math.floor(this.animatedValue) + "%")
+                },
+            })
+        })
+        let a = 1;
+        $(()=>{
+            setInterval(()=>{
+                a++
+                // $('.skill-per').css("width",wi+wi+'%'); 
+                let sum =Math.floor(Math.random()*(1- 100) + 100)
+                $(".skill-per").width(a+'%'); 
+                $('.skill-per').attr('per',a+'%')
+            },1000)
+        })
+      
+    </script>
+</body>
+</html>
