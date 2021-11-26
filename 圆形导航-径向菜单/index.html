@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./font/iconfont.css">
+  </head>
+  <body>
+    <div class="menu">
+      <div class="toggle">
+        <span class="iconfont icon-add"></span>
+      </div>
+      <li style="--i: 0">
+        <a href="#">
+            <span class="iconfont icon-home"></span>
+        </a>
+      </li>
+      <li style="--i: 1">
+        <a href="#">
+            <span class="iconfont icon-game"></span>
+        </a>
+      </li>
+      <li style="--i: 2">
+        <a href="#">
+            <span class="iconfont icon-mail"></span>
+        </a>
+      </li>
+      <li style="--i: 3">
+        <a href="#">
+            <span class="iconfont icon-user"></span>
+        </a>
+      </li>
+      <li style="--i: 4">
+        <a href="#">
+            <span class="iconfont icon-key"></span>
+        </a>
+      </li>
+      <li style="--i: 5">
+        <a href="#">
+            <span class="iconfont icon-video"></span>
+        </a>
+      </li>
+      <li style="--i: 6">
+        <a href="#">
+            <span class="iconfont icon-phone"></span>
+        </a>
+      </li>
+      <li style="--i: 7">
+        <a href="#">
+            <span class="iconfont icon-set"></span>
+        </a>
+      </li>
+    </div>
+    <script>
+        let toggle = document.querySelector('.toggle')
+        let menu = document.querySelector('.menu')
+        toggle.onclick = function (){
+            menu.classList.toggle('active')
+        }
+    </script>
+  </body>
+</html>
