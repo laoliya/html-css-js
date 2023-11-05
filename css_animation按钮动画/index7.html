@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn {
+        background: none;
+        color: tomato;
+        font-family: sans-serif;
+        font-size: 45px;
+        border: 5px solid tomato;
+        padding: 40px 80px;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.5s;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        background-color: tomato;
+        width: 100%;
+        height: 0;
+        border-radius: 0 0 50% 50%;
+        transition: all 0.5s;
+      }
+      .btn:hover::before {
+        height: 190%;
+      }
+      .btn:hover {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">快 点我</button>
+  </body>
+</html>
