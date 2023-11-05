@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        background: #001c30;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        color: #eee;
+      }
+      .title {
+        margin: 20px auto;
+      }
+      .container {
+        min-width: 600px;
+        padding: 30px;
+        box-shadow: 0 2px 16px #fff;
+        border-radius: 20px;
+        overflow-x: auto;
+      }
+      .nav-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 2px solid rgba(229, 229, 229);
+        font-size: 18px;
+        font-weight: 600;
+        position: relative;
+      }
+      .nav-box .nav-item {
+        font-size: 18px;
+        font-weight: 600;
+        list-style: none;
+        padding: 18px;
+        cursor: pointer;
+      }
+      .nav-box .nav-item.active {
+        color: #64ccc5;
+      }
+      .list-view {
+        padding: 20px;
+      }
+      .list-view .content {
+        display: none;
+        animation: animate 0.5s ease-in-out forwards;
+      }
+      @keyframes animate {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0px);
+          opacity: 1;
+        }
+      }
+      .list-view .content.active {
+        display: block;
+      }
+      .list-view .content h2 {
+        margin-bottom: 10px;
+      }
+      .slider {
+        position: absolute;
+        left: 14px;
+        top: 59px;
+        width: 72px;
+        height: 5px;
+        background-color: #64ccc5;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+      }
+    </style>
+    作者：布依前端 https://www.bilibili.com/read/cv24524736/ 出处：bilibili
+  </head>
+  <body>
+    <h2 class="title">布依前端作品，精致导航栏</h2>
+    <div class="container">
+      <ul class="nav-box">
+        <li class="nav-item active">首页和</li>
+        <li class="nav-item">前端开发</li>
+        <li class="nav-item">数据库</li>
+        <li class="nav-item">数据结构与算法</li>
+        <div class="slider"></div>
+      </ul>
+      <ul class="list-view">
+        <li class="content active">
+          <h2>首页^^^^</h2>
+          <p>展示关于网站游客经常关注的内容</p>
+        </li>
+        <li class="content">
+          <h2>前端开发---</h2>
+          <p>HTML、JavaScript、CSS、Vue全家桶和React全家桶</p>
+        </li>
+        <li class="content">
+          <h2>数据库@@@@</h2>
+          <p>关系型数据库MySQL，非关系型数据库MongoDB</p>
+        </li>
+        <li class="content">
+          <h2>数据结构与算法&&&&&&</h2>
+          <p>字符串、对象、数组、运算符&表达式</p>
+        </li>
+      </ul>
+    </div>
+    <script>
+      const tabs = document.querySelectorAll(".nav-item");
+      const all_content = document.querySelectorAll(".content");
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", (e) => {
+          tabs.forEach((tab) => tab.classList.remove("active"));
+          tab.classList.add("active");
+          const slider = document.querySelector(".slider");
+          slider.style.width = e.target.offsetWidth + "px";
+          slider.style.left = e.target.offsetLeft + "px";
+          all_content.forEach((el) => el.classList.remove("active"));
+          all_content[index].classList.add("active");
+        });
+      });
+      window.onload = () => {
+        const slider = document.querySelector(".slider");
+        const contents = document.getElementsByClassName("nav-item");
+        slider.style.left = contents[0].offsetLeft + "px";
+        slider.style.width = contents[0].offsetWidth + "px";
+      };
+    </script>
+  </body>
+  作者：布依前端 https://www.bilibili.com/read/cv24524736/ 出处：bilibili
+</html>
