@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .div {
+        width: 100vw;
+        height: 100vh;
+        background-image: url(./R-C.jpg);
+        background-position: center center;
+        /* 背景图不平铺 */
+        background-repeat: no-repeat;
+        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+        background-attachment: fixed;
+        /* 让背景图基于容器大小伸缩 */
+        background-size: cover;
+        /* 设置背景颜色，背景图加载过程中会显示背景色 */
+        background-color: bisque;
+      }
+      .div1 {
+        max-width: 2056px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .div2 {
+        display: inline-block;
+        margin: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+        z-index: 111;
+      }
+      img {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        width: 70px;
+        height: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div">
+      <div class="div1">
+        <div class="div2"></div>
+        <img src="./1951.png_860.png" alt="" />
+      </div>
+    </div>
+  </body>
+</html>
