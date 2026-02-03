@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:root 伪类 - CSS变量与主题切换</title>
+    <style>
+        /* 使用 :root 定义全局CSS变量 */
+        :root {
+            /* 颜色系统 */
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --text-light: #fff;
+  
+            /* 间距系统 */
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+  
+            /* 字体系统 */
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            --font-family: 'Segoe UI', system-ui, sans-serif;
+  
+            /* 边框系统 */
+            --border-radius: 0.5rem;
+            --border-width: 2px;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+            /* 动画设置 */
+            --transition-speed: 0.3s;
+  
+            /* 主题设置 */
+            --bg-color: #ffffff;
+            --card-bg: #f8f9fa;
+        }
+  
+        /* 暗色主题变量 */
+        [data-theme="dark"] {
+            --bg-color: #1a1a2e;
+            --text-color: #e6e6e6;
+            --card-bg: #16213e;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+  
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+  
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            padding: var(--spacing-lg);
+            min-height: 100vh;
+        }
+  
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+  
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: var(--border-width) solid var(--primary-color);
+        }
+  
+        h1 {
+            font-size: var(--font-size-xxl);
+            color: var(--primary-color);
+        }
+  
+        h2 {
+            font-size: var(--font-size-xl);
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+            color: var(--secondary-color);
+        }
+  
+        /* 主题切换控件 */
+        .theme-switcher {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+  
+        .theme-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--card-bg);
+            border: var(--border-width) solid transparent;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            font-weight: 600;
+        }
+  
+        .theme-btn.active {
+            border-color: var(--accent-color);
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+  
+        /* 卡片布局 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+  
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+  
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+  
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+  
+        .card p {
+            margin-bottom: var(--spacing-md);
+        }
+  
+        /* 按钮样式 - 使用CSS变量 */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            transition: background var(--transition-speed);
+        }
+  
+        .btn:hover {
+            background: var(--dark-color);
+        }
+  
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+  
+        .btn-accent {
+            background: var(--accent-color);
+        }
+  
+        /* 颜色系统展示 */
+        .color-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+  
+        .color-card {
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 600;
+            box-shadow: var(--box-shadow);
+        }
+  
+        .primary-color {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+  
+        .secondary-color {
+            background: var(--secondary-color);
+            color: var(--text-light);
+        }
+  
+        .accent-color {
+            background: var(--accent-color);
+            color: var(--text-light);
+        }
+  
+        .dark-color {
+            background: var(--dark-color);
+            color: var(--text-light);
+        }
+  
+        .light-color {
+            background: var(--light-color);
+        }
+  
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-lg: 1.5rem;
+                --spacing-xl: 2rem;
+                --font-size-xxl: 1.75rem;
+            }
+  
+            header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+        }
+  
+        /* 实用类 - 使用CSS变量 */
+        .mt-sm { margin-top: var(--spacing-sm); }
+        .mt-md { margin-top: var(--spacing-md); }
+        .mt-lg { margin-top: var(--spacing-lg); }
+        .mt-xl { margin-top: var(--spacing-xl); }
+  
+        .mb-sm { margin-bottom: var(--spacing-sm); }
+        .mb-md { margin-bottom: var(--spacing-md); }
+        .mb-lg { margin-bottom: var(--spacing-lg); }
+        .mb-xl { margin-bottom: var(--spacing-xl); }
+  
+        .text-center { text-align: center; }
+  
+        /* 主题切换动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+  
+        body.theme-changing {
+            animation: fadeIn var(--transition-speed) ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>:root 伪类应用</h1>
+            <div class="theme-switcher">
+                <button class="theme-btn active" data-theme="light">浅色主题</button>
+                <button class="theme-btn" data-theme="dark">深色主题</button>
+            </div>
+        </header>
+  
+        <main>
+            <section class="mb-xl">
+                <h2>CSS变量系统</h2>
+                <p class="mb-md">使用`:root`定义的CSS变量在整个文档中可用，确保设计一致性。</p>
+  
+                <div class="color-system">
+                    <div class="color-card primary-color">
+                        --primary-color
+                    </div>
+                    <div class="color-card secondary-color">
+                        --secondary-color
+                    </div>
+                    <div class="color-card accent-color">
+                        --accent-color
+                    </div>
+                    <div class="color-card dark-color">
+                        --dark-color
+                    </div>
+                    <div class="color-card light-color">
+                        --light-color
+                    </div>
+                </div>
+            </section>
+  
+            <section class="mb-xl">
+                <h2>响应式卡片</h2>
+                <p class="mb-md">所有样式使用CSS变量定义，确保一致的间距、颜色和效果。</p>
+  
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>卡片标题 1</h3>
+                        <p>此卡片使用了`:root`中定义的所有CSS变量：颜色、间距、边框半径和阴影。</p>
+                        <button class="btn">主要按钮</button>
+                    </div>
+  
+                    <div class="card">
+                        <h3>卡片标题 2</h3>
+                        <p>更改`:root`中的变量值会立即更新整个页面，无需修改各个元素样式。</p>
+                        <button class="btn btn-secondary">次要按钮</button>
+                    </div>
+  
+                    <div class="card">
+                        <h3>卡片标题 3</h3>
+                        <p>CSS变量支持动态主题切换，如右侧的浅色/深色主题切换器。</p>
+                        <button class="btn btn-accent">强调按钮</button>
+                    </div>
+                </div>
+            </section>
+  
+            <section>
+                <h2>:root 技术解析</h2>
+  
+                <div class="card">
+                    <h3>什么是 :root？</h3>
+                    <p><code>:root</code> 是一个CSS伪类，匹配文档树的根元素。在HTML文档中，这始终是<code><html></code>元素。</p>
+  
+                    <h3 class="mt-md">为什么使用 :root 而不是 html？</h3>
+                    <ul class="mb-md">
+                        <li><strong>更高的特异性</strong>：:root (0,1,0) 比 html (0,0,1) 具有更高的特异性</li>
+                        <li><strong>更好的语义</strong>：表示文档根而非特定元素</li>
+                        <li><strong>兼容性</strong>：在XML/SVG文档中也能正常工作</li>
+                    </ul>
+  
+                    <h3>实际应用场景</h3>
+                    <ul>
+                        <li>定义全局CSS变量（自定义属性）</li>
+                        <li>设置整个网站的基本样式</li>
+                        <li>创建主题切换系统</li>
+                        <li>定义设计系统（间距、颜色、字体等）</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+  
+    <script>
+        // 主题切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const html = document.documentElement;
+  
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+  
+                    // 添加过渡动画
+                    document.body.classList.add('theme-changing');
+  
+                    // 设置主题属性
+                    html.setAttribute('data-theme', theme);
+  
+                    // 更新活动按钮状态
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+  
+                    // 移除动画类
+                    setTimeout(() => {
+                        document.body.classList.remove('theme-changing');
+                    }, 300);
+                });
+            });
+  
+            // 检查用户系统主题偏好
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            if (prefersDarkScheme.matches) {
+                html.setAttribute('data-theme', 'dark');
+                document.querySelector('[data-theme="dark"]').classList.add('active');
+                document.querySelector('[data-theme="light"]').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
